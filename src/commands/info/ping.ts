@@ -10,6 +10,7 @@ export default new Command({
       embeds: [
         new MessageEmbed({
           description: `**Pong!**`,
+          color: "#000000",
         }),
       ],
     })
