@@ -15,7 +15,7 @@ export default new Event("guildMemberAdd", member => {
     7: `Давно тебя ждали, <@${member.user.id}>!`,
   }
 
-  const channel: any = member.guild.channels.cache.get("1000429334714126418") as TextChannel
+  const channel = member.guild.channels.cache.get("1000429334714126418") as TextChannel
   if (!channel) return
   channel.send(welocmeText[Math.floor(Math.random() * 7) + 1])
 })

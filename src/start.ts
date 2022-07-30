@@ -5,7 +5,7 @@ export const bot = new Bot()
 const Mongo = new MongoInit({ dbUrl: process.env.MONGODB_URL })
 
 async function start() {
-  await Mongo.connect()
+  Mongo.connect()
   await bot.start()
 }
 start()
