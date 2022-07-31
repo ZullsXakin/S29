@@ -1,9 +1,10 @@
 import { TextChannel } from "discord.js"
 import { bot, Event } from "../.."
+import colors from "colors"
 
 export default new Event("guildMemberAdd", member => {
   member.roles.add("845331705753108501")
-  console.log(`${member.user.tag} connected to ${member.guild.name} server`)
+  console.log(colors.red(`${member.user.tag} connected to ${member.guild.name} server`))
 
   const welocmeText = {
     1: `Добро пожаловать на сервер ${member.guild.name}, <@${member.user.id}>!`,
