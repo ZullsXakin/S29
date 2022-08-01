@@ -1,5 +1,6 @@
 import { TextChannel, VoiceState } from "discord.js"
 import { bot, Event } from "../.."
+import colors from "colors"
 
 let privateChannels = []
 let categoryID: string = "1003027148744966266"
@@ -51,7 +52,20 @@ export default new Event("voiceStateUpdate", async (OLD: VoiceState, NEW: VoiceS
     })
     textChannel.send(`https://discord.gg/${code.code}`)
     textChannel.send(text)
+    textChannel.send("За спам создание войсов, выдаю бан")
     privateChannels.push({ voice: voiceChannel.id, text: textChannel.id, owner: NEW.member.id })
+  }
+
+  if (OLD.channel != null && OLD.channel.id == channelID) {
+    const index = privateChannels.findIndex(x => x.voice == OLD.channel.id)
+    if (index != -1) {
+      const channel = privateChannels[index]
+      await bot.channels.cache.get(channel.text)?.delete()
+      await bot.channels.cache.get(channel.voice)?.delete()
+      privateChannels.splice(index, 1)
+    } else {
+      console.log(colors.red("Не нашел канал"))
+    }
   }
 
   // Выдача прав
